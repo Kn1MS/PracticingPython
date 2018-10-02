@@ -62,7 +62,6 @@ with open('News.txt', 'r', encoding='utf-8-sig') as source:
 			match = re.search(f' {popword} \w+', line)
 			if match:
 				phrases.append(str(line)[match.start()+1:match.end()])
-				print('FOUND PHRASE:', str(line)[match.start()+1:match.end()])
 
 print ('DONE! Creating counter for phrases...\n')
 popularity = Counter(phrases)
