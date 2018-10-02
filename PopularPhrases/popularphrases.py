@@ -53,14 +53,16 @@ for elem in wordslist:
 		if makenorm(elem) == popword and elem != popword:
 			temp.append(elem)
 popwordslist.extend(temp)
+popwordslist = list(set(popwordslist))
 
 print ('Creating phrases...\n')
 with open('News.txt', 'r', encoding='utf-8-sig') as source:
 	for line in source:
 		for popword in popwordslist:
-			match = re.search(f' {popword}\w? \w+', line)
+			match = re.search(f' {popword} \w+', line)
 			if match:
 				phrases.append(str(line)[match.start()+1:match.end()])
+				print('FOUND PHRASE:', str(line)[match.start()+1:match.end()])
 
 print ('DONE! Creating counter for phrases...\n')
 popularity = Counter(phrases)
